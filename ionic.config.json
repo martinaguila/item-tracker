@@ -1,0 +1,7 @@
+{
+  "name": "item-tracker",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
