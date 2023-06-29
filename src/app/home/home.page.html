@@ -1,20 +1,29 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
     <ion-title>
-      Blank
+      Item Tracker
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-item *ngFor="let item of items; let i = index">
+    <ion-input [(ngModel)]="item.name" placeholder="Item" (input)="updateTotal()"></ion-input>
+    <ion-input [(ngModel)]="item.price" placeholder="Price" type="number"
+               (ionFocus)="clearPrice(item)" (ionBlur)="resetPrice(item)"
+               (input)="updateTotal()"></ion-input>
+    <ion-input [(ngModel)]="item.quantity" placeholder="Quantity" type="number"
+               (ionFocus)="clearQuantity(item)" (input)="updateTotal()"></ion-input>
+    <ion-label>{{ item.price * item.quantity | currency: 'PHP' }}</ion-label>
+    <ion-icon name="trash" slot="end" (click)="deleteItem(i)"></ion-icon>
+  </ion-item>  
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-item>
+    <ion-button expand="full" (click)="addItem()">Add Item</ion-button>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Total Amount:</ion-label>
+    <ion-label>{{ totalAmount | currency: 'PHP' }}</ion-label>
+  </ion-item>
 </ion-content>
