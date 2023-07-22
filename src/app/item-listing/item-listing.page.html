@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-row>
+      <ion-col size="2">
+      </ion-col>
+      <ion-col size="8" class="ion-text-center">
+        <div class="centered-text">
+          Item Tracker
+        </div>
+      </ion-col>
+      <ion-col size="2">
+        <ion-menu-button></ion-menu-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <table class="margin-bottom-20">
+    <thead>
+      <tr>
+        <th class="wide-cell">Item</th>
+        <th class="small-cell">Quantity</th>
+        <th class="small-cell">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of tableData; let i = index">
+        <td class="wide-cell">{{ row.item }}</td>
+        <td class="small-cell">{{ row.quantity }}</td>
+        <td class="small-cell"><ion-icon name="trash" (click)="deleteItem(i)"></ion-icon></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="input-container">
+    <input type="text" placeholder="Item" [(ngModel)]="newItem">
+    <input type="number" placeholder="Quantity" [(ngModel)]="newQuantity">
+    <button (click)="addItem()">Add Item</button>
+  </div>
+      
+</ion-content>

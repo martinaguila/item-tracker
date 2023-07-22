@@ -10,7 +10,15 @@ const routes: Routes = [
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
+  },  {
+    path: 'item-listing',
+    loadChildren: () => import('./item-listing/item-listing.module').then( m => m.ItemListingPageModule)
   },
+  {
+    path: 'item-listing-modal',
+    loadChildren: () => import('./item-listing-modal/item-listing-modal.module').then( m => m.ItemListingModalPageModule)
+  },
+
 ];
 
 @NgModule({

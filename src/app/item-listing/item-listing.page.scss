@@ -1,0 +1,57 @@
+.centered-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid black;
+  padding: 8px;
+}
+
+// .input-container {
+//   display: flex;
+//   align-items: center;
+// }
+
+// .input-container input {
+//   width: 80%;
+//   padding: 8px;
+//   margin-right: 5px;
+// }
+
+// .input-container button {
+//   width: 20%;
+//   padding: 8px;
+// }
+
+.wide-cell {
+  width: 70%;
+}
+
+.small-cell {
+  width: 15%;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.input-container input[type="text"] {
+  width: 75%;
+  padding: 8px;
+}
+
+.input-container input[type="number"] {
+  width: 25%;
+  padding: 8px;
+}
