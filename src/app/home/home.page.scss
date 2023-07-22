@@ -5,3 +5,10 @@ ion-item {
 ion-icon {
   --color: red;
 }
+
+.centered-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
