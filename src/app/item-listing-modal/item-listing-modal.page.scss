@@ -1,0 +1,44 @@
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid black;
+  padding: 8px;
+}
+
+.wide-cell {
+  width: 70%;
+}
+
+.medium-cell{
+  width: 20%
+}
+
+.small-cell {
+  width: 15%;
+}
+
+.small-cell2{
+  width: 10%;
+}
+
+.width-100{
+  width: 100%;
+}
+
+.check-icon {
+  color: green;
+  margin-right: 5px;
+  vertical-align: middle;
+  font-size: 4vw;
+  padding-bottom: 2px;
+}

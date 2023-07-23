@@ -1,13 +1,52 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>item-listing-modal</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">item-listing-modal</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <h5 class="center">
+    Item Summary
+  </h5>
+  <table *ngIf="component === 'listing'" class="margin-bottom-20">
+    <thead>
+      <tr>
+        <th class="wide-cell">Item</th>
+        <th class="small-cell">Quantity</th>
+        <!-- <th class="small-cell">Action</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of tableData; let i = index">
+        <td class="wide-cell">
+          <ion-icon name="checkmark-circle-outline" *ngIf="row.checked" class="check-icon"></ion-icon>
+          {{ row.item }}
+        </td>
+        <td class="center">{{ row.quantity }}</td>
+        <!-- <td class="small-cell"><ion-icon name="trash" (click)="deleteItem(i)"></ion-icon></td> -->
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="component === 'items'">
+    <table class="margin-bottom-20 width-100">
+      <thead>
+        <tr>
+          <th class="wide-cell">Item</th>
+          <th class="medium-cell">Amount</th>
+          <th class="small-cell2">Qty</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of itemData; let i = index">
+          <td class="wide-cell">{{ row.name }}</td>
+          <td class="medium-cell">{{ row.price | currency: 'PHP' }}</td>
+          <td class="small-cell2">{{ row.quantity }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <ion-item>
+      <ion-label>Total Amount:</ion-label>
+      <ion-label>{{ totalAmount | currency: 'PHP' }}</ion-label>
+    </ion-item>
+  </div>
+
+  <ion-item>
+    <ion-button expand="full" (click)="closeSummary()">Close Summary</ion-button>
+  </ion-item>
 </ion-content>

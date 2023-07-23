@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ItemListingModalPage } from '../item-listing-modal/item-listing-modal.page';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-item-listing',
@@ -7,11 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ItemListingPage implements OnInit {
 
-  tableData: { item: string, quantity: string }[] = [];
+  tableData: { item: string, quantity: string, checked: boolean }[] = [];
   newItem: string = '';
   newQuantity: string = '';
 
-  constructor() { }
+  constructor(
+    private modalCtrl: ModalController
+  ) { }
 
   ngOnInit() {
     this.loadItem();
@@ -19,7 +23,7 @@ export class ItemListingPage implements OnInit {
 
   addItem() {
     if (this.newItem && this.newQuantity !== '') {
-      const newItemData = { item: this.newItem, quantity: this.newQuantity };
+      const newItemData = { item: this.newItem, quantity: this.newQuantity, checked: false };
       this.tableData.push(newItemData);
       localStorage.setItem('tableData', JSON.stringify(this.tableData));
       this.newItem = '';
@@ -40,7 +44,28 @@ export class ItemListingPage implements OnInit {
     } else {
       console.log("No data found in localStorage.");
     }
+  }
 
+  toggleItem(index: number) {
+    this.tableData[index].checked = !this.tableData[index].checked;
+    localStorage.setItem('tableData', JSON.stringify(this.tableData));
+  }
+
+  async openSummary(){
+    const modal = await this.modalCtrl.create({
+      component: ItemListingModalPage,
+      cssClass: 'item-modal',
+      componentProps: {
+        'tableData': this.tableData,
+        'component': 'listing'
+      },
+      // backdropDismiss: false
+    });
+
+    modal.onDidDismiss().then((val) => {
+    });
+
+    return await modal.present();
   }
 
 }
