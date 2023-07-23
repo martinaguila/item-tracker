@@ -26,9 +26,12 @@
     </thead>
     <tbody>
       <tr *ngFor="let row of tableData; let i = index">
-        <td class="wide-cell">{{ row.item }}</td>
-        <td class="small-cell">{{ row.quantity }}</td>
-        <td class="small-cell"><ion-icon name="trash" (click)="deleteItem(i)"></ion-icon></td>
+        <td class="wide-cell" (click)="toggleItem(i)">
+          <ion-icon name="checkmark-circle-outline" *ngIf="row.checked" class="check-icon"></ion-icon>
+          {{ row.item }}
+        </td>
+        <td class="small-cell center" (click)="toggleItem(i)">{{ row.quantity }}</td>
+        <td class="small-cell center"><ion-icon name="trash" (click)="deleteItem(i)"></ion-icon></td>
       </tr>
     </tbody>
   </table>
@@ -38,5 +41,9 @@
     <input type="number" placeholder="Quantity" [(ngModel)]="newQuantity">
     <button (click)="addItem()">Add Item</button>
   </div>
+
+  <ion-item>
+    <ion-button expand="full" (click)="openSummary()">Open Summary</ion-button>
+  </ion-item>
       
 </ion-content>
